@@ -26,9 +26,18 @@ module.exports = {
                     });
     },
     getSingleThought(req,res){
-        Thoughts.find({_id:req.params.id})
+        Thoughts.findOne({_id:req.params.id})
                 .then((thought) => res.json(thought))
                 .catch((err) => res.status(500).json(err));
+    },
+    updateSingleThought(req,res){
+        Thoughts.findByIdAndUpdate({_id:req.params.id},{ $set: req.body },{ runValidators: true, new: true })
+                .then((thought) =>
+                !thought
+                ? res.status(404).json({ message: 'No thought with this id!' })
+                : res.json(thought)
+            )
+            .catch((err) => res.status(500).json(err));
     }
 
 }

@@ -1,0 +1,22 @@
+[
+    {
+        "thoughtText": "This is a random thought test",
+        "userName" : "luis21xs3",
+        "reactions":[]
+    },
+    {
+        "thoughtText": "I need to drink more water",
+        "userName" : "john123",
+        "reactions":[]
+    },
+    {
+        "thoughtText": "Just tripped on my way into the bar and ate the floor!",
+        "userName" : "luis21xs3"
+    },
+    {
+        "thoughtText": "Whataburger is not as good as they said...",
+        "userName" : "terry123",
+        "reactions":[]
+    }
+    
+]

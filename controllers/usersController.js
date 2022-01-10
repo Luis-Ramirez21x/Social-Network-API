@@ -32,6 +32,16 @@ module.exports = {
                 : res.json(user)
       )
       .catch((err) => res.status(500).json(err));
+    },
+    deleteUser(req,res){
+        User.findOneAndDelete({userName:req.params.username})
+            .then((user) =>
+                !user
+                ? res.status(400).json({message:"That user already does not exsist"})
+                //might have to add code to delete associated thoughts as well
+                :res.json({message:"User has been deleted"})
+            )
+        .catch((err) => res.status(500).json(err));    
     }
    
 }

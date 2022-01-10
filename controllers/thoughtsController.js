@@ -24,6 +24,11 @@ module.exports = {
                     console.log(err);
                     return res.status(500).json(err);
                     });
+    },
+    getSingleThought(req,res){
+        Thoughts.find({_id:req.params.id})
+                .then((thought) => res.json(thought))
+                .catch((err) => res.status(500).json(err));
     }
 
 }

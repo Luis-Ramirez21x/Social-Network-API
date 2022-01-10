@@ -33,11 +33,20 @@ module.exports = {
     updateSingleThought(req,res){
         Thoughts.findByIdAndUpdate({_id:req.params.id},{ $set: req.body },{ runValidators: true, new: true })
                 .then((thought) =>
-                !thought
-                ? res.status(404).json({ message: 'No thought with this id!' })
-                : res.json(thought)
+                    !thought
+                    ? res.status(404).json({ message: 'No thought with this id!' })
+                    : res.json(thought)
             )
             .catch((err) => res.status(500).json(err));
+    },
+    deleteThought(req,res){
+        Thoughts.findOneAndDelete({_id:req.params.id})
+                .then((thought) =>
+                    !thought
+                    ? res.status(400).json({message:"That thought already does not exsist"})
+                    :res.json({message:"Thought has been deleted"})
+                )
+                .catch((err) => res.status(500).json(err));
     }
 
 }

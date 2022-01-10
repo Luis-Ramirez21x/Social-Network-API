@@ -31,7 +31,10 @@ module.exports = {
                 .catch((err) => res.status(500).json(err));
     },
     updateSingleThought(req,res){
-        Thoughts.findByIdAndUpdate({_id:req.params.id},{ $set: req.body },{ runValidators: true, new: true })
+        Thoughts.findByIdAndUpdate(
+            {_id:req.params.id},
+            { $set: req.body },
+            { runValidators: true, new: true })
                 .then((thought) =>
                     !thought
                     ? res.status(404).json({ message: 'No thought with this id!' })
@@ -47,6 +50,22 @@ module.exports = {
                     :res.json({message:"Thought has been deleted"})
                 )
                 .catch((err) => res.status(500).json(err));
+    },
+    addReaction(req,res){
+        Thoughts.findByIdAndUpdate(
+            {_id:req.params.id},
+            { $addToSet: { reactions: req.body } },
+            { runValidators: true, new: true })
+                .then((thought) =>
+                    !thought
+                    ? res.status(404).json({ message: 'No thought with this id!' })
+                    : res.json(thought)
+            )
+                .catch((err) => {
+                    console.log(err);
+                    res.status(500).json(err);
+                });
     }
+
 
 }

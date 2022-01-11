@@ -33,4 +33,4 @@ This API was created using
 
 ## Author
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+https://github.com/Luis-Ramirez21x

@@ -17,12 +17,17 @@ module.exports = {
     getSingleUser(req,res){
         User.findOne({userName:req.params.username})
             .select('-__v')
+            .populate('thoughts')
+            .populate('friends')
             .then((user) =>
                 !user
                 ? res.status(404).json({ message: 'No user found' })
                 : res.json(user)
       )
-      .catch((err) => res.status(500).json(err));
+      .catch((err) => {
+          console.log(err);
+          res.status(500).json(err);
+        });
     },
     updateSingleUser(req,res){
         User.findOneAndUpdate({userName:req.params.username},
@@ -41,9 +46,11 @@ module.exports = {
                 !user
                 ? res.status(400).json({message:"That user already does not exsist"})
                 //might have to add code to delete associated thoughts as well
-                :res.json({message:"User has been deleted"})
+                : Thoughts.deleteMany({userName: {$in:user.thoughts}})
+               
             )
-        .catch((err) => res.status(500).json(err));    
+            .then(() =>res.json({message:"User and associated thoughts have been deleted"})) 
+            .catch((err) => res.status(500).json(err));    
     },
     addFriend(req,res){
         User.findOne({userName:req.params.friendUserName})

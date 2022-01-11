@@ -14,7 +14,7 @@ connection.once('open', async () => {
     await Thoughts.deleteMany({});
 
     
-    await Thoughts.insertMany(thoughtData);
+    //await Thoughts.insertMany(thoughtData);
     await User.insertMany(userData);
 
     console.table(userData);

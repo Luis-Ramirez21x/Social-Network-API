@@ -36,11 +36,11 @@ const userSchema = new Schema(
     }
 );
 
-/* virtual to be tested with seeds data
+// virtual to be tested with seeds data
 userSchema.virtual('friendCount').get(function(){
     return this.friends.length;
 })
-*/
+
 
 const User = model('User', userSchema);
 

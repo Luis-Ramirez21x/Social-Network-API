@@ -26,6 +26,9 @@ This API was created using
 
 ### Walk Through Video Link
 -click the link below to see the api in use
+- part 1 https://watch.screencastify.com/v/uAPf8Dmi7C6l9wm1xNTX
+- part 2 https://watch.screencastify.com/v/TmIQlhOrN2ie30vZVVso
+- part 3 https://watch.screencastify.com/v/XhV3taNIQDjVbzqyxtw6
 
 
 ## Author
